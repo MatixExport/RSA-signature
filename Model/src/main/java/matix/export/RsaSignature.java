@@ -1,4 +1,5 @@
 package matix.export;
+import matix.export.Data.RsaPrivateKey;
 import matix.export.Data.RsaPublicKey;
 import matix.export.RsaEncoder;
 
@@ -19,13 +20,14 @@ public class RsaSignature {
 
     public static byte[] getSignature(byte[] msg, RsaPublicKey publicKey){
         digest.update(msg);
-        BigInteger signature = new BigInteger(digest.digest(msg));
+        BigInteger signature = new BigInteger(1,digest.digest());
         return RsaEncoder.encryptSingleBlock(signature.toByteArray(),publicKey).toByteArray();
     }
 
-    public static boolean isSignatureValid(byte[] msg,byte[] sendSignature, RsaPublicKey publicKey){
-        BigInteger signature =new BigInteger(1,getSignature(msg,publicKey));
-        return signature.compareTo(new BigInteger(1,sendSignature)) == 0;
+    public static boolean isSignatureValid(byte[] msg,byte[] sendSignature, RsaPrivateKey privateKey){
+        digest.update(msg);
+        BigInteger decryptedSignature = RsaEncoder.decryptSingleBlock(sendSignature,privateKey);
+        return decryptedSignature.compareTo(new BigInteger(1,digest.digest())) == 0;
     }
 
     public static byte[] getBlindMsg(byte[] msg,RsaPublicKey publicKey){
@@ -36,9 +38,8 @@ public class RsaSignature {
         return getSignature(getBlindMsg(msg,blindKey),signatureKey);
     }
 
-    public static boolean isBlindSignatureValid(byte[] msg,byte[] sendSignature,RsaPublicKey blindKey,RsaPublicKey signatureKey){
-        BigInteger signature = new BigInteger(1,getBlindSignature(msg,blindKey,signatureKey));
-        return signature.compareTo(new BigInteger(1,sendSignature)) == 0;
+    public static boolean isBlindSignatureValid(byte[] msg,byte[] sendSignature,RsaPublicKey blindKey,RsaPrivateKey signatureKey){
+        return isSignatureValid(getBlindMsg(msg,blindKey),sendSignature,signatureKey);
     }
 
 
