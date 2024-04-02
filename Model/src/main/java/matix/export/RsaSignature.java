@@ -1,4 +1,5 @@
 package matix.export;
+import matix.export.Data.RsaPublicKey;
 import matix.export.RsaEncoder;
 
 import java.math.BigInteger;
@@ -16,15 +17,15 @@ public class RsaSignature {
     }
 
 
-    public static byte[] getSignature(byte[] msg, BigInteger e,BigInteger n){
+    public static byte[] getSignature(byte[] msg, RsaPublicKey publicKey){
         digest.update(msg);
         BigInteger signature = new BigInteger(digest.digest(msg));
-        return RsaEncoder.encryptSingleBlock(signature.toByteArray(),e,n).toByteArray();
+        return RsaEncoder.encryptSingleBlock(signature.toByteArray(),publicKey).toByteArray();
     }
 
-    public static boolean isSignatureValid(byte[] msg,byte[] send_signature,BigInteger e,BigInteger n){
-        BigInteger signature =new BigInteger(1,getSignature(msg,e,n));
-        return signature.compareTo(new BigInteger(1,send_signature)) == 0;
+    public static boolean isSignatureValid(byte[] msg,byte[] sendSignature, RsaPublicKey publicKey){
+        BigInteger signature =new BigInteger(1,getSignature(msg,publicKey));
+        return signature.compareTo(new BigInteger(1,sendSignature)) == 0;
     }
 
 

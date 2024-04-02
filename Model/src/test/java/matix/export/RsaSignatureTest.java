@@ -1,5 +1,6 @@
 package matix.export;
 
+import matix.export.Data.RsaKeySet;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,22 +13,18 @@ class RsaSignatureTest {
 
     @Test
     void baseValidSignatureTest() {
-        BigInteger[] keys = RsaEncoder.generateKeys(512);
-        BigInteger e = keys[0];
-        BigInteger n = keys[1];
+        RsaKeySet keys = RsaEncoder.generateKeys(512);
         byte[] msg = {0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110};
-        byte[] signature = RsaSignature.getSignature(msg,e,n);
-        assertTrue(RsaSignature.isSignatureValid(msg,signature,e,n));
+        byte[] signature = RsaSignature.getSignature(msg,keys.getPublicKey());
+        assertTrue(RsaSignature.isSignatureValid(msg,signature,keys.getPublicKey()));
     }
     @Test
     void baseInvalidSignatureTest() {
-        BigInteger[] keys = RsaEncoder.generateKeys(512);
-        BigInteger e = keys[0];
-        BigInteger n = keys[1];
+        RsaKeySet keys = RsaEncoder.generateKeys(512);
         byte[] msg = {0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110};
-        byte[] signature = RsaSignature.getSignature(msg,e,n);
+        byte[] signature = RsaSignature.getSignature(msg,keys.getPublicKey());
         msg[0] = 0b01111111;
-        assertFalse(RsaSignature.isSignatureValid(msg,signature,e,n));
+        assertFalse(RsaSignature.isSignatureValid(msg,signature,keys.getPublicKey()));
     }
 
 
