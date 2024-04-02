@@ -16,39 +16,6 @@ public class Util {
         return gcd(a.subtract(b),b);
     }
 
-//    static public BigInteger full_eucalidian(BigInteger a, BigInteger b){
-//        BigInteger temp;
-//        BigInteger p_2,p_1,Q_2,Q_1,p_current,Q_current;
-//        p_2 = BigInteger.ZERO;
-//        p_1 = BigInteger.ONE;
-//        Q_2 = BigInteger.ONE;
-//        Q_1 = BigInteger.ZERO;
-//       while(!b.equals(BigInteger.ZERO)){
-//           temp = a;
-//           a = b;
-//           b = temp.mod(b);
-//           BigInteger q = temp.subtract(b).divide(a);
-//            if(b.compareTo(a) > 0){
-//                temp = a;
-//                a = b;
-//                b = temp;
-//            }
-//
-//
-//            p_current = q.multiply(p_1).add(p_2);
-//            Q_current = q.multiply(Q_1).add(Q_2);
-//            Q_2 = Q_1;
-//            p_2 = p_1;
-//            Q_1 = Q_current;
-//            p_1 = p_current;
-//            System.out.println(q);
-//            System.out.println(p_current);
-//            System.out.println(Q_current);
-//            System.out.println("---------------");
-//
-//       }
-//       return a;
-//    }
 
     static public BigInteger modularInverse(BigInteger a, BigInteger b){
         BigInteger temp;
@@ -130,5 +97,9 @@ public class Util {
             randomNumber = getRandomNumber(min,max);
         }while(!isPrime(randomNumber));
         return randomNumber;
+    }
+    static public BigInteger getRandomBigIntegerPrimeNumber(int len){
+        Random random = new SecureRandom();
+        return BigInteger.probablePrime(len,random);
     }
 }
