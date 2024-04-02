@@ -102,4 +102,24 @@ public class Util {
         Random random = new SecureRandom();
         return BigInteger.probablePrime(len,random);
     }
+    public static byte[] joinTables(byte[] in1, byte[] in2) {
+        byte[] output = new byte[in1.length + in2.length];
+        System.arraycopy(in1, 0, output, 0, in1.length);
+        System.arraycopy(in2, 0, output, in1.length, in2.length);
+        return output;
+    }
+    public static byte[] bigIntegerArrayToByteArray(BigInteger[] bigIntegers){
+        byte[] bytes = {};
+        for (BigInteger i:bigIntegers) {
+            bytes = joinTables(bytes,i.toByteArray());
+        }
+        return bytes;
+    }
+
+
+
+
+
+
+
 }
