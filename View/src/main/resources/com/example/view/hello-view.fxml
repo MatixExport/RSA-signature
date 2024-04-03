@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.view.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
-
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="800" minWidth="600" prefHeight="800" prefWidth="914.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.view.HelloController">
+   <children>
+      <VBox prefHeight="800" prefWidth="200" styleClass="menu-column">
+         <children>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60" prefWidth="200" styleClass="menu-button" text="  Sign" onAction="#switchPane" userData="generate-signature-view.fxml">
+               <graphic>
+                  <SVGPath content="M40,60 C42,48 44,30 25,32" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60" prefWidth="200" styleClass="menu-button" text="  Verify">
+               <graphic>
+                  <SVGPath content="M40,60 C42,48 44,30 25,32" />
+               </graphic>
+            </Button>
+         </children></VBox>
+      <Pane layoutX="199.0" layoutY="-3.0" prefHeight="806.0" prefWidth="715.0" fx:id="main_pane" />
+   </children>
+</AnchorPane>
