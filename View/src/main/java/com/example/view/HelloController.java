@@ -21,10 +21,9 @@ public class HelloController {
     public void switchPane (ActionEvent event) throws IOException {
         String fxml_name  = (String) ((Button)event.getSource()).getUserData();
         Pane newLoadedPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml_name)));
-        main_pane.getChildren().removeAll();
+        main_pane.getChildren().clear();
         main_pane.getChildren().add(newLoadedPane);
     }
-
 
     @FXML
     protected void onHelloButtonClick() {
