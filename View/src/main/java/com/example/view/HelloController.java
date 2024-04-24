@@ -1,47 +1,44 @@
 package com.example.view;
 
+import com.example.model.RsaSignature;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.FileChooser;
 import com.example.model.Base64CharsetAdapter;
 import com.example.model.Data.RsaKeySet;
 import com.example.model.Data.RsaPublicKey;
 import com.example.model.RsaEncoder;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.*;
 
+import static com.example.view.FileHandler.load_file;
 
+//region fxml controls
 public class HelloController {
     @FXML
     public TextField key_len;
-    @FXML
-    private Label welcomeText;
-    @FXML
-    private GridPane key_form_1,key_form_2,key_form_3;
-    @FXML
-    public TextField filename1,filename2,filename3;
-    @FXML
-    public TextField key0,key1,key2;
 
+
+    @FXML
+    public TextField filename1,filename2,filename3,file_filename,sign_filename,verify_filename;
+    @FXML
+    public TextField key0,key1,key2,file1,sign1,sign2;
 
     @FXML
     private Pane main_pane;
+//endregion
+    private final ArrayList<KeyInputWindow> keys = new ArrayList<KeyInputWindow>();
 
-    private final ArrayList<KeyWindow> keys = new ArrayList<KeyWindow>();
+    private InputWindow file,verify_sign,generate_sign;
+
     private ArrayList<Pane> panes = new ArrayList<>();
 
     private Scene scene;
@@ -52,14 +49,18 @@ public class HelloController {
 
     public void setPanes(ArrayList<Pane> panes) {
         this.panes = panes;
+        loadInputWindows();
+    }
+    private void loadInputWindows(){
+        file = new InputWindow(file_filename,file1);
+        generate_sign = new InputWindow(sign_filename,sign1);
+        verify_sign = new InputWindow(verify_filename,sign2);
         loadKeys();
     }
-
     private void loadKeys(){
-        keys.add(new KeyWindow(filename1,key0));
-        keys.add(new KeyWindow(filename2,key1));
-        keys.add(new KeyWindow(filename3,key2));
-        System.out.println(keys);
+        keys.add(new KeyInputWindow(filename1,key0));
+        keys.add(new KeyInputWindow(filename2,key1));
+        keys.add(new KeyInputWindow(filename3,key2));
     }
 
     public void switchPane (ActionEvent event) throws IOException {
@@ -75,20 +76,47 @@ public class HelloController {
         return Integer.parseInt(data);
     }
 
+    private void save_input_window(InputWindow window){
+        FileHandler.save_file(Base64.getDecoder().decode(window.getFiletext().getText()),scene);
+    }
+    private void load_input_window(InputWindow window){
+        byte[] data = load_file(window.getFilename(),scene);
+        String base64_key = Base64.getEncoder().encodeToString(data);
+        window.getFiletext().setText(base64_key);
+    }
+
     @FXML
     private void handle_load_key_button(ActionEvent event){
-        KeyWindow keyWindow = keys.get(getUserDataValue(event));
-        byte[] data = load_file(keyWindow.getFilename());
-        String base64_key = Base64.getEncoder().encodeToString(data);
-        keyWindow.getFiletext().setText(base64_key);
-        keyWindow.setKey(base64_key);
-
+        InputWindow inputWindow = keys.get(getUserDataValue(event));
+        load_input_window(inputWindow);
     }
 
     @FXML
     private void handle_save_key_button(ActionEvent event){
-        KeyWindow keyWindow = keys.get(getUserDataValue(event));
-        save_file(Base64.getDecoder().decode(keyWindow.getFiletext().getText()));
+        InputWindow inputWindow = keys.get(getUserDataValue(event));
+        save_input_window(inputWindow);
+    }
+
+    @FXML
+    private void handle_load_file_button(ActionEvent event){
+        load_input_window(file);
+    }
+
+    @FXML
+    private void handle_load_sign_button(ActionEvent event){
+       load_input_window(verify_sign);
+    }
+    @FXML
+    private void handle_save_sign_button(ActionEvent event){
+        save_input_window(generate_sign);
+    }
+    @FXML
+    private void handle_sign_button(){
+        //check if data/keys are loaded
+        byte[] data = Base64.getDecoder().decode(file.getFiletext().getText());
+        byte[] signature = RsaSignature.getBlindSignature(data,keys.get(2).getPublicKey(),keys.get(1).getPublicKey());
+        generate_sign.getFiletext().setText(Base64.getEncoder().encodeToString(signature));
+
     }
 
     @FXML
@@ -96,7 +124,6 @@ public class HelloController {
         int key_length = Integer.parseInt(key_len.getText());
         RsaKeySet rsaKeySet1 = RsaEncoder.generateKeys(key_length);
         RsaPublicKey blindKey = RsaEncoder.generateKeys(key_length).getPublicKey();
-
         try {
             keys.get(0).getFiletext().setText(Base64CharsetAdapter.privateToBase64String(rsaKeySet1.getPrivateKey()));
             keys.get(1).getFiletext().setText(Base64CharsetAdapter.publicToBase64String(rsaKeySet1.getPublicKey()));
@@ -107,42 +134,5 @@ public class HelloController {
     }
 
 
-    @FXML
-    private byte[] load_file(TextField filepath) {
-        File file = select_file_load_dialog("Select file", "");
-        filepath.setText(String.valueOf(file.toURI()));
-        byte[] data;
-        try {
-            data = Files.readAllBytes(Paths.get(file.toURI()));
-        } catch (Exception e) {
-            throw  new RuntimeException();
-        }
-        return data;
-    }
-
-    @FXML
-    private void save_file(byte[] data) {
-        File file = select_file_save_dialog("Save file", "");
-        try {
-            Files.createFile(file.toPath());
-            Files.write(file.toPath(), data);
-        } catch (Exception e) {
-            throw new RuntimeException();
-        }
-    }
-
-    private File select_file_load_dialog(String title, String filename) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle(title);
-        fileChooser.setInitialFileName(filename);
-        return fileChooser.showOpenDialog(scene.getWindow());
-    }
-
-    private File select_file_save_dialog(String title, String filename) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle(title);
-        fileChooser.setInitialFileName(filename);
-        return fileChooser.showSaveDialog(scene.getWindow());
-    }
 
 }

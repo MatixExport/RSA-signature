@@ -2,15 +2,13 @@ package com.example.view;
 
 import javafx.scene.control.TextField;
 
-public class KeyWindow {
+public class InputWindow {
 
     private TextField filename;
     private TextField filetext;
-    private byte[] data;
 
-    String key;
 
-    public KeyWindow(TextField filename, TextField filetext) {
+    public InputWindow(TextField filename, TextField filetext) {
         this.filename = filename;
         this.filetext = filetext;
     }
@@ -31,19 +29,5 @@ public class KeyWindow {
         this.filetext = filetext;
     }
 
-    public byte[] getData() {
-        return data;
-    }
 
-    public void setData(byte[] data) {
-        this.data = data;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 }
