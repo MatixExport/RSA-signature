@@ -1,13 +1,9 @@
-package matix.export;
+package com.example.model;
 
-import matix.export.Data.RsaKeySet;
+import com.example.model.Data.RsaKeySet;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import matix.export.RsaSignature;
-import  matix.export.RsaEncoder;
-
-import java.math.BigInteger;
 
 class RsaSignatureTest {
 

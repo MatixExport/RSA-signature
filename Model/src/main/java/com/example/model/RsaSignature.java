@@ -1,7 +1,6 @@
-package matix.export;
-import matix.export.Data.RsaPrivateKey;
-import matix.export.Data.RsaPublicKey;
-import matix.export.RsaEncoder;
+package com.example.model;
+import com.example.model.Data.RsaPrivateKey;
+import com.example.model.Data.RsaPublicKey;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

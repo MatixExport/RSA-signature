@@ -1,7 +1,7 @@
-package matix.export;
+package com.example.model;
 
-import matix.export.Data.RsaPrivateKey;
-import matix.export.Data.RsaPublicKey;
+import com.example.model.Data.RsaPrivateKey;
+import com.example.model.Data.RsaPublicKey;
 import org.junit.jupiter.api.Test;
 
 import java.security.NoSuchAlgorithmException;

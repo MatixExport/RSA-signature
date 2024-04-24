@@ -1,13 +1,10 @@
-package matix.export;
+package com.example.model;
 import java.math.BigInteger;
-import java.net.URI;
-import java.sql.Array;
 import java.util.Arrays;
 
-import matix.export.Data.RsaKeySet;
-import matix.export.Data.RsaPrivateKey;
-import matix.export.Data.RsaPublicKey;
-import matix.export.Util;
+import com.example.model.Data.RsaKeySet;
+import com.example.model.Data.RsaPrivateKey;
+import com.example.model.Data.RsaPublicKey;
 
 public class RsaEncoder {
 

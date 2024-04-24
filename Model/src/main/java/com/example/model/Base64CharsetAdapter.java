@@ -1,12 +1,10 @@
-package matix.export;
+package com.example.model;
 
-import matix.export.Data.RsaPrivateKey;
-import matix.export.Data.RsaPublicKey;
+import com.example.model.Data.RsaPrivateKey;
+import com.example.model.Data.RsaPublicKey;
 
-import java.math.BigInteger;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
-import java.security.PublicKey;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.*;
@@ -24,7 +22,7 @@ public class Base64CharsetAdapter {
     }
 
     private static String addHeaders(String data,String name){
-        return getStartHeader(name) + "\n" + data + "\n" + getEndHeader(name);
+        return getStartHeader(name) + "" + data + "" + getEndHeader(name);
     }
 
     private static String removeHeaders(String data,String name){

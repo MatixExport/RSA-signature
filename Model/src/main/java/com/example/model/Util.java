@@ -1,4 +1,4 @@
-package matix.export;
+package com.example.model;
 
 import java.math.BigInteger;
 import java.util.Random;
