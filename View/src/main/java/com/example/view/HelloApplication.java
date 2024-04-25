@@ -13,8 +13,8 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 715.0);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(fxmlLoader.load(), 900, 400);
+        stage.setTitle("RSA-signature");
         HelloController controller = (HelloController) fxmlLoader.getController();
         controller.setPanes(loadPanes(controller));
         controller.setScene(scene);

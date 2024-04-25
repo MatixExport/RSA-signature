@@ -28,7 +28,8 @@ public class HelloController {
     @FXML
     public TextField key_len;
 
-
+    @FXML
+    public Label verify_status_label;
     @FXML
     public TextField filename1,filename2,filename3,file_filename,file_filename2,sign_filename,verify_filename;
     @FXML
@@ -130,7 +131,11 @@ public class HelloController {
         byte[] sign_data = verify_sign.getData();
         RsaPublicKey blindKey = keys.get(2).getPublicKey();
         RsaPrivateKey readKey = keys.get(0).getPrivateKey();
-        System.out.println(RsaSignature.isBlindSignatureValid(filedata,sign_data,blindKey,readKey));
+        if (RsaSignature.isBlindSignatureValid(filedata,sign_data,blindKey,readKey)){
+            verify_status_label.setText("Valid");
+            return;
+        }
+        verify_status_label.setText("Invalid");
     }
 
     @FXML

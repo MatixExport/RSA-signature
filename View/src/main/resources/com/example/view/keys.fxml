@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="806.0" prefWidth="715.0" stylesheets="@keys.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" >
-    <HBox alignment="CENTER" layoutY="171.0" prefHeight="207.0" prefWidth="627.0">
+<AnchorPane prefHeight="806.0" prefWidth="715.0" stylesheets="@keys.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox alignment="CENTER" layoutY="87.0" prefHeight="223.0" prefWidth="627.0">
 
         <GridPane fx:id="key_form_1" prefHeight="190.0" prefWidth="170.0" styleClass="key-box">
             <columnConstraints>
@@ -19,11 +19,11 @@
                 <RowConstraints maxHeight="137.0" minHeight="10.0" prefHeight="137.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <TextField fx:id="filename1" prefHeight="33.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-            <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" text="Load" userData="0" GridPane.rowIndex="1" onAction="#handle_load_key_button" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Save" userData="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" onAction="#handle_save_key_button" />
+            <Button mnemonicParsing="false" onAction="#handle_load_key_button" prefHeight="0.0" prefWidth="100.0" text="Load" userData="0" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handle_save_key_button" prefHeight="25.0" prefWidth="100.0" text="Save" userData="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
             <TextField fx:id="key0" prefHeight="123.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
             <opaqueInsets>
-               <Insets left="15.0" />
+               <Insets left="30.0" />
             </opaqueInsets></TextField>
 
         </GridPane>
@@ -40,11 +40,11 @@
 
             </rowConstraints>
             <TextField fx:id="filename2" prefHeight="33.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-            <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" text="Load" userData="1" GridPane.rowIndex="1" onAction="#handle_load_key_button" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Save" userData="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" onAction="#handle_save_key_button" />
+            <Button mnemonicParsing="false" onAction="#handle_load_key_button" prefHeight="0.0" prefWidth="100.0" text="Load" userData="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handle_save_key_button" prefHeight="25.0" prefWidth="100.0" text="Save" userData="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
             <TextField fx:id="key1" prefHeight="123.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
             <opaqueInsets>
-               <Insets left="15.0" />
+               <Insets left="30.0" />
             </opaqueInsets></TextField>
 
         </GridPane>
@@ -61,14 +61,18 @@
 
             </rowConstraints>
             <TextField fx:id="filename3" prefHeight="33.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-            <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" text="Load" userData="2" GridPane.rowIndex="1" onAction="#handle_load_key_button"/>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Save" userData="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" onAction="#handle_save_key_button" />
+            <Button mnemonicParsing="false" onAction="#handle_load_key_button" prefHeight="0.0" prefWidth="100.0" text="Load" userData="2" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handle_save_key_button" prefHeight="25.0" prefWidth="100.0" text="Save" userData="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
             <TextField fx:id="key2" prefHeight="123.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
             <padding>
-                <Insets right="15.0" />
+                <Insets right="30.0" />
             </padding>
         </GridPane>
     </HBox>
-   <Button layoutX="265.0" layoutY="391.0" mnemonicParsing="false" text="Generate Keys" onAction="#generate_keys" />
-   <TextField fx:id="key_len" layoutX="99.0" layoutY="391.0" />
+   <Button layoutX="67.0" layoutY="342.0" mnemonicParsing="false" onAction="#generate_keys" text="Generate Keys" />
+   <TextField fx:id="key_len" layoutX="113.0" layoutY="310.0" prefHeight="25.0" prefWidth="46.0" />
+   <Label layoutX="67.0" layoutY="314.0" text="Length:" />
+   <Label layoutX="67.0" layoutY="70.0" text="Public key used to sign" />
+    <Label layoutX="233.0" layoutY="70.0" text="Private key used in verification" />
+    <Label layoutX="402.0" layoutY="59.0" prefHeight="40.0" prefWidth="219.0" text="Public key used for blinding the message" />
 </AnchorPane>
