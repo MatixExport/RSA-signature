@@ -119,7 +119,7 @@ public class HelloController {
     @FXML
     private void handle_sign_button(){
         //check if data/keys are loaded
-        if(!areInputWindowsLoaded(new InputWindow[]{keys.get(0), keys.get(1), file, generate_sign})){
+        if(!areInputWindowsLoaded(new InputWindow[]{keys.get(0), keys.get(1), file})){
             new GuiException("Not all required data is loaded");
             return;
         }

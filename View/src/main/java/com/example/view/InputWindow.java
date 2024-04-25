@@ -12,6 +12,7 @@ public class InputWindow {
 
 
     public InputWindow(TextField filename, TextArea filetext) {
+        filetext.setWrapText(true);
         this.filename = filename;
         this.filetext = filetext;
     }
