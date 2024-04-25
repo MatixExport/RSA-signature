@@ -1,5 +1,6 @@
 package com.example.view;
 
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.util.Base64;
@@ -7,10 +8,10 @@ import java.util.Base64;
 public class InputWindow {
 
     private TextField filename;
-    private TextField filetext;
+    private TextArea filetext;
 
 
-    public InputWindow(TextField filename, TextField filetext) {
+    public InputWindow(TextField filename, TextArea filetext) {
         this.filename = filename;
         this.filetext = filetext;
     }
@@ -23,11 +24,11 @@ public class InputWindow {
         this.filename = filename;
     }
 
-    public TextField getFiletext() {
+    public TextArea getFiletext() {
         return filetext;
     }
 
-    public void setFiletext(TextField filetext) {
+    public void setFiletext(TextArea filetext) {
         this.filetext = filetext;
     }
 

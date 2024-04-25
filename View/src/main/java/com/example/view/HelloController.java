@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -33,7 +34,7 @@ public class HelloController {
     @FXML
     public TextField filename1,filename2,filename3,file_filename,file_filename2,sign_filename,verify_filename;
     @FXML
-    public TextField key0,key1,key2,file1,file2,sign1,sign2;
+    public TextArea key0,key1,key2,file1,file2,sign1,sign2;
 
     @FXML
     private Pane main_pane;
@@ -126,16 +127,17 @@ public class HelloController {
 
     }
     @FXML
-    private void handle_verify_button(){
+    private void handle_verify_button() throws NoSuchAlgorithmException, InvalidKeySpecException {
         byte[] filedata = verify_file.getData();
         byte[] sign_data = verify_sign.getData();
         RsaPublicKey blindKey = keys.get(2).getPublicKey();
         RsaPrivateKey readKey = keys.get(0).getPrivateKey();
+        verify_status_label.setText("Status: Loading");
         if (RsaSignature.isBlindSignatureValid(filedata,sign_data,blindKey,readKey)){
-            verify_status_label.setText("Valid");
+            verify_status_label.setText("Status: Valid");
             return;
         }
-        verify_status_label.setText("Invalid");
+        verify_status_label.setText("Status: Invalid");
     }
 
     @FXML

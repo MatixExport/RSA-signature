@@ -21,10 +21,10 @@
             <TextField fx:id="filename1" prefHeight="33.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
             <Button mnemonicParsing="false" onAction="#handle_load_key_button" prefHeight="25.0" prefWidth="63.0" styleClass="reg-button" text="Load" userData="0" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#handle_save_key_button" prefHeight="25.0" prefWidth="63.0" styleClass="reg-button" text="Save" userData="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
-            <TextField fx:id="key0" prefHeight="123.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+            <TextArea fx:id="key0" prefHeight="123.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
             <opaqueInsets>
                <Insets left="30.0" />
-            </opaqueInsets></TextField>
+            </opaqueInsets></TextArea>
 
         </GridPane>
         <GridPane id="key_form_2" prefHeight="190.0" prefWidth="170.0" styleClass="key-box">
@@ -42,10 +42,10 @@
             <TextField fx:id="filename2" prefHeight="33.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
             <Button mnemonicParsing="false" onAction="#handle_load_key_button" prefHeight="0.0" prefWidth="63.0" styleClass="reg-button" text="Load" userData="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#handle_save_key_button" prefHeight="25.0" prefWidth="63.0" styleClass="reg-button" text="Save" userData="1" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
-            <TextField fx:id="key1" prefHeight="123.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+            <TextArea fx:id="key1" prefHeight="123.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
             <opaqueInsets>
                <Insets left="30.0" />
-            </opaqueInsets></TextField>
+            </opaqueInsets></TextArea>
 
         </GridPane>
         <GridPane id="key_form_3" prefHeight="190.0" prefWidth="170.0" styleClass="key-box">
@@ -63,7 +63,7 @@
             <TextField fx:id="filename3" prefHeight="33.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
             <Button mnemonicParsing="false" onAction="#handle_load_key_button" prefHeight="0.0" prefWidth="63.0" styleClass="reg-button" text="Load" userData="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#handle_save_key_button" prefHeight="25.0" prefWidth="63.0" styleClass="reg-button" text="Save" userData="2" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
-            <TextField fx:id="key2" prefHeight="123.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+            <TextArea fx:id="key2" prefHeight="123.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
             <padding>
                 <Insets right="30.0" />
             </padding>
