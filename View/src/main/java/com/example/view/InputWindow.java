@@ -2,6 +2,8 @@ package com.example.view;
 
 import javafx.scene.control.TextField;
 
+import java.util.Base64;
+
 public class InputWindow {
 
     private TextField filename;
@@ -27,6 +29,10 @@ public class InputWindow {
 
     public void setFiletext(TextField filetext) {
         this.filetext = filetext;
+    }
+
+    public byte[] getData(){
+        return Base64.getDecoder().decode(getFiletext().getText());
     }
 
 

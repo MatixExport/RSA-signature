@@ -1,10 +1,12 @@
 package com.example.view;
 
+import com.example.model.Data.RsaPrivateKey;
 import com.example.model.RsaSignature;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -28,16 +30,16 @@ public class HelloController {
 
 
     @FXML
-    public TextField filename1,filename2,filename3,file_filename,sign_filename,verify_filename;
+    public TextField filename1,filename2,filename3,file_filename,file_filename2,sign_filename,verify_filename;
     @FXML
-    public TextField key0,key1,key2,file1,sign1,sign2;
+    public TextField key0,key1,key2,file1,file2,sign1,sign2;
 
     @FXML
     private Pane main_pane;
 //endregion
     private final ArrayList<KeyInputWindow> keys = new ArrayList<KeyInputWindow>();
 
-    private InputWindow file,verify_sign,generate_sign;
+    private InputWindow file,verify_file,verify_sign,generate_sign;
 
     private ArrayList<Pane> panes = new ArrayList<>();
 
@@ -55,6 +57,7 @@ public class HelloController {
         file = new InputWindow(file_filename,file1);
         generate_sign = new InputWindow(sign_filename,sign1);
         verify_sign = new InputWindow(verify_filename,sign2);
+        verify_file = new InputWindow(file_filename2,file2);
         loadKeys();
     }
     private void loadKeys(){
@@ -101,7 +104,10 @@ public class HelloController {
     private void handle_load_file_button(ActionEvent event){
         load_input_window(file);
     }
-
+    @FXML
+    private void handle_load_verify_file_button(ActionEvent event){
+        load_input_window(verify_file);
+    }
     @FXML
     private void handle_load_sign_button(ActionEvent event){
        load_input_window(verify_sign);
@@ -117,6 +123,14 @@ public class HelloController {
         byte[] signature = RsaSignature.getBlindSignature(data,keys.get(2).getPublicKey(),keys.get(1).getPublicKey());
         generate_sign.getFiletext().setText(Base64.getEncoder().encodeToString(signature));
 
+    }
+    @FXML
+    private void handle_verify_button(){
+        byte[] filedata = verify_file.getData();
+        byte[] sign_data = verify_sign.getData();
+        RsaPublicKey blindKey = keys.get(2).getPublicKey();
+        RsaPrivateKey readKey = keys.get(0).getPrivateKey();
+        System.out.println(RsaSignature.isBlindSignatureValid(filedata,sign_data,blindKey,readKey));
     }
 
     @FXML

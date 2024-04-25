@@ -1,7 +1,13 @@
 package com.example.model;
 
 import com.example.model.Data.RsaKeySet;
+import com.example.model.Data.RsaPrivateKey;
+import com.example.model.Data.RsaPublicKey;
 import org.junit.jupiter.api.Test;
+
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,6 +36,21 @@ class RsaSignatureTest {
         byte[] msg = {0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110};
         byte[] signature = RsaSignature.getBlindSignature(msg,blindKeys.getPublicKey(),signatureKeys.getPublicKey());
         assertTrue(RsaSignature.isBlindSignatureValid(msg,signature,blindKeys.getPublicKey(),signatureKeys.getPrivateKey()));
+    }
+
+    @Test
+    void blindValidSignatureWithConversionsTest() throws NoSuchAlgorithmException, InvalidKeySpecException {
+        RsaKeySet blindKeys = RsaEncoder.generateKeys(512);
+        RsaKeySet signatureKeys = RsaEncoder.generateKeys(512);
+        byte[] msg = {0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110,0b00000000,0b01010101,0b00001110};
+        byte[] signature = RsaSignature.getBlindSignature(msg,blindKeys.getPublicKey(),signatureKeys.getPublicKey());
+
+        RsaPublicKey blindKey =  Base64CharsetAdapter.publicFromBase64String(Base64CharsetAdapter.publicToBase64String(blindKeys.getPublicKey()));
+        RsaPrivateKey readKey =  Base64CharsetAdapter.privateFromBase64String(Base64CharsetAdapter.privateToBase64String(signatureKeys.getPrivateKey()));
+        byte[] signature2 =  Base64.getDecoder().decode(Base64.getEncoder().encodeToString(signature));
+        byte[] msg2 = Base64.getDecoder().decode(Base64.getEncoder().encodeToString(msg));
+
+        assertTrue(RsaSignature.isBlindSignatureValid(msg2,signature2,blindKey,readKey));
     }
     @Test
     void blindInvalidSignatureTest() {

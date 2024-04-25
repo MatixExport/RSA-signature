@@ -14,7 +14,7 @@
                   <SVGPath content="M40,60 C42,48 44,30 25,32" />
                </graphic>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60" prefWidth="200" styleClass="menu-button" text="  Verify" userData="1">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60" prefWidth="200" styleClass="menu-button" text="  Verify" userData="1" onAction="#switchPane">
                <graphic>
                   <SVGPath content="M40,60 C42,48 44,30 25,32" />
                </graphic>
