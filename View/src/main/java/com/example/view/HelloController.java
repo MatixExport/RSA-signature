@@ -23,6 +23,8 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.*;
 
 import static com.example.view.FileHandler.load_file;
+import static com.example.view.Util.areInputWindowsLoaded;
+import static com.example.view.Util.getUserDataValue;
 
 //region fxml controls
 public class HelloController {
@@ -75,11 +77,7 @@ public class HelloController {
     }
 
 
-    int getUserDataValue(ActionEvent event){
-        Node node = (Node) event.getSource() ;
-        String data = (String) node.getUserData();
-        return Integer.parseInt(data);
-    }
+
 
     private void save_input_window(InputWindow window){
         FileHandler.save_file(Base64.getDecoder().decode(window.getFiletext().getText()),scene);
@@ -121,23 +119,42 @@ public class HelloController {
     @FXML
     private void handle_sign_button(){
         //check if data/keys are loaded
+        if(!areInputWindowsLoaded(new InputWindow[]{keys.get(0), keys.get(1), file, generate_sign})){
+            new GuiException("Not all required data is loaded");
+            return;
+        }
         byte[] data = Base64.getDecoder().decode(file.getFiletext().getText());
         byte[] signature = RsaSignature.getBlindSignature(data,keys.get(2).getPublicKey(),keys.get(1).getPublicKey());
-        generate_sign.getFiletext().setText(Base64.getEncoder().encodeToString(signature));
-
+        try{
+            generate_sign.getFiletext().setText(Base64.getEncoder().encodeToString(signature));
+        }
+        catch (Exception e){
+            new GuiException(e.getMessage());
+        }
     }
+
     @FXML
     private void handle_verify_button() throws NoSuchAlgorithmException, InvalidKeySpecException {
+        if(!areInputWindowsLoaded(new InputWindow[]{verify_file,verify_sign,keys.get(2),keys.get(0)})){
+            new GuiException("Not all required data is loaded");
+            return;
+        }
         byte[] filedata = verify_file.getData();
         byte[] sign_data = verify_sign.getData();
         RsaPublicKey blindKey = keys.get(2).getPublicKey();
         RsaPrivateKey readKey = keys.get(0).getPrivateKey();
         verify_status_label.setText("Status: Loading");
-        if (RsaSignature.isBlindSignatureValid(filedata,sign_data,blindKey,readKey)){
-            verify_status_label.setText("Status: Valid");
-            return;
+        try {
+            if (RsaSignature.isBlindSignatureValid(filedata,sign_data,blindKey,readKey)){
+                verify_status_label.setText("Status: Valid");
+                return;
+            }
+            verify_status_label.setText("Status: Invalid");
         }
-        verify_status_label.setText("Status: Invalid");
+        catch (Exception e){
+            new GuiException(e.getMessage());
+        }
+
     }
 
     @FXML
