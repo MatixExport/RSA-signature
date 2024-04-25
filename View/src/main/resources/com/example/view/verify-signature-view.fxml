@@ -21,8 +21,8 @@
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="192.0" minHeight="42.0" prefHeight="48.0" vgrow="SOMETIMES" />
-         <RowConstraints maxHeight="305.0" minHeight="12.0" prefHeight="26.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="305.0" minHeight="12.0" prefHeight="207.0" vgrow="SOMETIMES" />
+         <RowConstraints maxHeight="305.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="305.0" minHeight="12.0" prefHeight="217.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="154.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
          <RowConstraints maxHeight="87.0" minHeight="30.0" prefHeight="55.0" />
          <RowConstraints maxHeight="87.0" minHeight="30.0" prefHeight="83.0" />
@@ -39,7 +39,7 @@
                 <RowConstraints maxHeight="137.0" minHeight="10.0" prefHeight="137.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <TextField fx:id="file_filename2" prefHeight="33.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-            <Button mnemonicParsing="false" onAction="#handle_load_verify_file_button" prefHeight="0.0" prefWidth="100.0" text="Load" userData="0" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handle_load_verify_file_button" prefHeight="0.0" prefWidth="100.0" styleClass="reg-button" text="Load" userData="0" GridPane.rowIndex="1" />
             <TextField fx:id="file2" prefHeight="123.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
                 <opaqueInsets>
                     <Insets left="15.0" />
@@ -57,7 +57,7 @@
                 <RowConstraints maxHeight="137.0" minHeight="10.0" prefHeight="137.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <TextField fx:id="verify_filename" prefHeight="33.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-            <Button mnemonicParsing="false" onAction="#handle_load_sign_button" prefHeight="0.0" prefWidth="100.0" text="Load" userData="0" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handle_load_sign_button" prefHeight="0.0" prefWidth="100.0" styleClass="reg-button" text="Load" userData="0" GridPane.rowIndex="1" />
             <TextField fx:id="sign2" prefHeight="123.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
                 <opaqueInsets>
                     <Insets left="15.0" />
@@ -65,10 +65,10 @@
         </GridPane>
    
    
-       <Button mnemonicParsing="false" onAction="#handle_verify_button" prefHeight="25.0" prefWidth="79.0" text="Verify" userData="0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <Label fx:id="verify_status_label" text="Status: Unkown" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-      <Label text="File" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        <Label text="File signature" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+       <Button mnemonicParsing="false" onAction="#handle_verify_button" prefHeight="25.0" prefWidth="79.0" styleClass="reg-button" text="Verify" userData="0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <Label fx:id="verify_status_label" styleClass="label-text" text="Status: Unkown" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+      <Label styleClass="label-text" text="File" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label styleClass="label-text" text="File signature" GridPane.columnIndex="4" GridPane.rowIndex="1" />
       
     </GridPane>
 </AnchorPane>

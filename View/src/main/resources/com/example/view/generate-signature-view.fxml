@@ -19,13 +19,13 @@
       
               </rowConstraints>
               <TextField fx:id="file_filename" prefHeight="33.0" prefWidth="210.0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-              <Button mnemonicParsing="false" onAction="#handle_load_file_button" prefHeight="0.0" prefWidth="100.0" text="Load" GridPane.rowIndex="1" />
+              <Button mnemonicParsing="false" onAction="#handle_load_file_button" prefHeight="0.0" prefWidth="100.0" text="Load" GridPane.rowIndex="1" styleClass="reg-button" />
               <TextField fx:id="file1" prefHeight="163.0" prefWidth="210.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
               <padding>
                   <Insets left="40" />
               </padding>
           </GridPane>
-         <Button mnemonicParsing="false" onAction="#handle_sign_button" text="Sign &gt;">
+         <Button mnemonicParsing="false" onAction="#handle_sign_button" text="Sign &gt;" styleClass="reg-button">
             <HBox.margin>
                <Insets left="50.0" top="120.0" />
             </HBox.margin></Button>
@@ -43,7 +43,7 @@
 
               </rowConstraints>
               <TextField prefHeight="33.0" prefWidth="210.0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-              <Button mnemonicParsing="false" onAction="#handle_save_sign_button" prefHeight="25.0" prefWidth="100.0" text="Save" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+              <Button mnemonicParsing="false" onAction="#handle_save_sign_button" prefHeight="25.0" prefWidth="100.0" text="Save" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" styleClass="reg-button" />
               <TextField fx:id="sign1" prefHeight="163.0" prefWidth="210.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
               <padding>
                   <Insets left="40" />
@@ -51,6 +51,6 @@
           </GridPane>
       </children>
    </HBox>
-   <Label layoutX="127.0" layoutY="306.0" text="File" />
-   <Label layoutX="476.0" layoutY="306.0" text="Signature" />
+   <Label layoutX="127.0" layoutY="306.0" text="File" styleClass="label-text" />
+   <Label layoutX="476.0" layoutY="306.0" text="Signature" styleClass="label-text" />
 </AnchorPane>
