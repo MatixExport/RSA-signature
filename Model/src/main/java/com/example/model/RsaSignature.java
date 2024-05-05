@@ -19,18 +19,13 @@ public class RsaSignature {
 
     public static byte[] getSignature(byte[] msg, RsaPublicKey publicKey){
         digest.update(msg);
-        BigInteger signature = new BigInteger(1,digest.digest());
-        return RsaEncoder.encryptSingleBlock(signature.toByteArray(),publicKey).toByteArray();
+        return RsaEncoder.encryptSingleBlock(digest.digest(),publicKey).toByteArray();
     }
 
-    public static boolean isSignatureValid(byte[] msg,byte[] sendSignature, RsaPrivateKey privateKey){
+    public static boolean isSignatureValid(byte[] msg,byte[] receivedSignature, RsaPrivateKey privateKey){
         digest.update(msg);
-        BigInteger decryptedSignature = RsaEncoder.decryptSingleBlock(sendSignature,privateKey);
+        BigInteger decryptedSignature = RsaEncoder.decryptSingleBlock(receivedSignature,privateKey);
         return decryptedSignature.compareTo(new BigInteger(1,digest.digest())) == 0;
-    }
-
-    public static byte[] getBlindMsg(byte[] msg,RsaPublicKey publicKey){
-        return Util.bigIntegerArrayToByteArray(RsaEncoder.encrypt(msg,publicKey));
     }
 
     public static byte[] getBlindSignature(byte[] msg,RsaPublicKey blindKey,RsaPublicKey signatureKey){
@@ -40,6 +35,11 @@ public class RsaSignature {
     public static boolean isBlindSignatureValid(byte[] msg,byte[] sendSignature,RsaPublicKey blindKey,RsaPrivateKey signatureKey){
         return isSignatureValid(getBlindMsg(msg,blindKey),sendSignature,signatureKey);
     }
+
+    public static byte[] getBlindMsg(byte[] msg,RsaPublicKey blindKey){
+        return Util.bigIntegerArrayToByteArray(RsaEncoder.encrypt(msg, blindKey));
+    }
+
 
 
 
