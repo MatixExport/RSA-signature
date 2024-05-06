@@ -9,12 +9,7 @@ import java.math.BigInteger;
 
 class RsaEncoderTest {
 
-    @Test
-    void gdcTest(){
-        System.out.println(Util.modularInverse(BigInteger.valueOf(8),BigInteger.valueOf(35)));
-        System.out.println(Util.toPositiveMod(Util.modularInverse(BigInteger.valueOf(8),BigInteger.valueOf(35)), BigInteger.valueOf(35)));
 
-    }
     @Test
     void encryptTest(){
         long p =53;

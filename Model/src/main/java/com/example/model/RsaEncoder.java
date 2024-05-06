@@ -20,7 +20,7 @@ public class RsaEncoder {
         do{
             e = Util.getRandomBigInteger(phi);
         }while(!e.gcd(phi).equals(BigInteger.ONE));
-        BigInteger d = Util.toPositiveMod(Util.modularInverse(e,phi), phi);
+        BigInteger d = Util.toPositiveMod(e.modInverse(phi), phi);
         return new RsaKeySet(e,n,d);
 
     }
