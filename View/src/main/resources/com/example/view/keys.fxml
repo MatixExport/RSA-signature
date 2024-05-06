@@ -70,9 +70,9 @@
         </GridPane>
     </HBox>
    <Button layoutX="67.0" layoutY="342.0" mnemonicParsing="false" onAction="#generate_keys" styleClass="reg-button" text="Generate Keys" />
-   <TextField fx:id="key_len" layoutX="113.0" layoutY="310.0" prefHeight="25.0" prefWidth="46.0" text="1024"/>
+   <TextField fx:id="key_len" layoutX="113.0" layoutY="310.0" prefHeight="25.0" prefWidth="46.0" text="1024" />
    <Label layoutX="67.0" layoutY="314.0" styleClass="label-text" text="Length:" />
-   <Label layoutX="67.0" layoutY="70.0" styleClass="label-text" text="Public key used to sign" />
-    <Label layoutX="233.0" layoutY="70.0" styleClass="label-text" text="Private key used in verification" />
-    <Label layoutX="402.0" layoutY="59.0" prefHeight="40.0" prefWidth="219.0" styleClass="label-text" text="Public key used for blinding the message" />
+   <Label layoutX="67.0" layoutY="70.0" styleClass="label-text" text="Key used to sign" />
+    <Label layoutX="233.0" layoutY="70.0" styleClass="label-text" text="Key used in verification" />
+    <Label layoutX="402.0" layoutY="59.0" prefHeight="40.0" prefWidth="219.0" styleClass="label-text" text="Key used for blinding the message" />
 </AnchorPane>
