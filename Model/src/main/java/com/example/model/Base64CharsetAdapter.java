@@ -22,7 +22,8 @@ public class Base64CharsetAdapter {
     }
 
     private static String addHeaders(String data,String name){
-        return getStartHeader(name) + "" + data + "" + getEndHeader(name);
+//        return getStartHeader(name) + "" + data + "" + getEndHeader(name);
+        return data;
     }
 
     private static String removeHeaders(String data,String name){
