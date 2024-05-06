@@ -6,13 +6,6 @@ import java.security.SecureRandom;
 
 public class Util {
 
-    static public BigInteger toPositiveMod(BigInteger integer,BigInteger mod){
-        if(integer.compareTo(BigInteger.ZERO) >= 0){
-            return integer;
-        }
-        return integer.mod(mod).add(mod).mod(mod);
-    }
-
     static public BigInteger getRandomBigInteger(BigInteger limit){
         Random generator = new SecureRandom();
         BigInteger randomNumber;
