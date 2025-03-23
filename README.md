@@ -1,4 +1,4 @@
-<h1 align="center">
+<h3 align="center">
 <pre>
   _____    _____             _____  _____  _____  _   _  ______  _____  
  |  __ \  / ____|   /\      / ____||_   _|/ ____|| \ | ||  ____||  __ \ 
@@ -9,7 +9,7 @@
                                                                         
                                                                         
 </pre>
-</h1>
+</h3>
 
 <h4 align="center">
   A simple Java program for blind signing and veryfing using RSA algorithm.
